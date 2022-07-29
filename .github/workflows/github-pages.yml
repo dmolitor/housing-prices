@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Install Git Dependency
+      - name: Install Git
         run: apt-get install -y git
       
       - name: Publish
@@ -20,3 +20,5 @@ jobs:
         with:
           target: gh-pages
           path: ./housing-prices.qmd
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
