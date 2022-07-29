@@ -7,7 +7,9 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    container: djmolitor/housing-prices:v2
+    container:
+      image: djmolitor/housing-prices:v2
+      options: --user root
     steps:
       - name: Checkout
         uses: actions/checkout@v3
