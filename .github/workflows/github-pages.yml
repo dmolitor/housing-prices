@@ -14,31 +14,8 @@ jobs:
 
       - name: Install Git
         run: apt-get install -y git
-
-      - name: Install R Dependencies
-        shell: Rscript {0}
-        run: |
-          install.packages("renv")
-          renv::install()
       
-      - name: Install Python Dependencies
+      - name: Confirm in Git repo
         run: |
-          python3.10 -m venv pyenv
-          . ./pyenv/bin/activate
-          pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Render Quarto Project
-        run: |
-          quarto render index.qmd
-          mkdir _site
-          mv index.html _site
-        env:
-          QUARTO_PYTHON: ./pyenv/bin/python
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: _site
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ls -l
+          git rev-parse --is-inside-work-tree
