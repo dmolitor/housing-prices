@@ -12,7 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Install Git
+      - name: Install Git Dependency
         run: apt-get install -y git
       
       - name: Publish
