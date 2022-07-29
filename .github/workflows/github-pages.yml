@@ -43,8 +43,7 @@ jobs:
       - name: Install R Dependencies
         run: |
           sudo apt-get install -y libudunits2-dev
-          install.packages("renv")
-          renv::install()
+          Rscript -e "install.packages('renv'); renv::install()"
       
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
