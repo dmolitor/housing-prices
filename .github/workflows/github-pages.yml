@@ -5,14 +5,20 @@ on:
       - main
 
 jobs:
+  configure:
+    runs-on: ubuntu-latest
+    outputs:
+      uid_gid: ${{ steps.get-user.outputs.uid_gid }}
+    steps:
+      - id: get-user
+        run: echo "::set-output name=uid_gid::$(id -u):$(id -g)"
   publish:
+    needs: configure
     runs-on: ubuntu-latest
     container:
       image: djmolitor/housing-prices:v2
-      options: --user root
+      options: --user ${{ needs.configure.outputs.uid_gid }}
     steps:
-      - name: Change Owner of Container Working Directory
-        run: chown <uid>:<gid> .
       - name: Checkout
         uses: actions/checkout@v3
       - name: Verify git repo
