@@ -15,10 +15,17 @@ jobs:
       - name: Install Git
         run: apt-get install -y git
       
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html
+          path: ./index.qmd
+
       - name: Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
-          path: ./housing-prices.qmd
+          path: ./index.html
+          render: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

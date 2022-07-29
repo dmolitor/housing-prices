@@ -3,6 +3,7 @@ title: "matplotlib demo"
 format:
   html:
     code-fold: true
+    self-contained: true
 jupyter: python3
 ---
 
