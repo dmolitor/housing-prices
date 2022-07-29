@@ -41,7 +41,10 @@ jobs:
           r-version: '4.2.1'
 
       - name: Install R Dependencies
-        uses: r-lib/actions/setup-r-dependencies@v2
+        shell: Rscript {0}
+        run: |
+          install.packages("renv")
+          renv::install()
       
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2
