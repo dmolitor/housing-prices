@@ -11,6 +11,8 @@ jobs:
       image: djmolitor/housing-prices:v2
       options: --user root
     steps:
+      - name: Change Owner of Container Working Directory
+        run: chown <uid>:<gid> .
       - name: Checkout
         uses: actions/checkout@v3
       - name: Verify git repo
