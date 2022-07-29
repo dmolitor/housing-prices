@@ -5,29 +5,28 @@ on:
       - main
 
 jobs:
-  configure:
-    runs-on: ubuntu-latest
-    outputs:
-      uid_gid: ${{ steps.get-user.outputs.uid_gid }}
-    steps:
-      - id: get-user
-        run: echo "::set-output name=uid_gid::$(id -u):$(id -g)"
+  #configure:
+  #  runs-on: ubuntu-latest
+  #  outputs:
+  #    uid_gid: ${{ steps.get-user.outputs.uid_gid }}
+  #  steps:
+  #    - id: get-user
+  #      run: echo "::set-output name=uid_gid::$(id -u):$(id -g)"
   
   publish:
-    needs: configure
+    #needs: configure
     runs-on: ubuntu-latest
-    container:
-      image: djmolitor/housing-prices:v2
-      options: --user ${{ needs.configure.outputs.uid_gid }}
+    #container:
+    #  image: djmolitor/housing-prices:v2
+    #  options: --user ${{ needs.configure.outputs.uid_gid }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-
-      - name: Install R Dependencies
-        shell: Rscript {0}
-        run: |
-          install.packages("renv")
-          renv::install()
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
       
       - name: Install Python Dependencies
         run: |
@@ -35,6 +34,19 @@ jobs:
           . ./pyenv/bin/activate
           pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.2.1'
+
+      - name: Install R Dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+      
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+      - run: |
+          quarto --version
 
       - name: Render Quarto Project
         run: |
