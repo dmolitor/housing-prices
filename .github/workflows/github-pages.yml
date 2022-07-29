@@ -12,6 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
+      - name: Install Git
+        run: apt-get install -y git
+      
       - name: Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
