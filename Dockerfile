@@ -14,4 +14,5 @@ RUN python3.10 -m venv pyenv \
     && pip install -r requirements.txt
 RUN R -e "install.packages('renv')" \
     && R -e "renv::install()"
-ENV QUARTO_PYTHON=pyenv/bin/python
+ENV QUARTO_PYTHON=./pyenv/bin/python
+ENV QUARTO_JUPYTER=./pyenv/bin/jupyter
