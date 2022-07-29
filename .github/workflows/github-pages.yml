@@ -7,22 +7,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    container: djmolitor/housing-prices:v2
+    # container: djmolitor/housing-prices:v2
     steps:
-      - name: Force Install GIT latest
-        run: |
-          apt-get install -y software-properties-common \
-          && apt-get update \
-          && add-apt-repository -y ppa:git-core/ppa \
-          && apt-get update \
-          && apt-get install -y git
-
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      
-      - name: Confirm in Git repo
         run: |
           ls -l
           git rev-parse --is-inside-work-tree
