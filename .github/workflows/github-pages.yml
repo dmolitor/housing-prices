@@ -14,7 +14,12 @@ jobs:
       
       - name: Install Git
         run: apt-get install -y git
-      
+
+      - name: Diagnostics
+        run: |
+          ls .
+          echo $QUARTO_PYTHON
+
       - name: Render Quarto Project
         run: quarto render index.qmd
 
