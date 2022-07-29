@@ -28,14 +28,17 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # - name: Render Quarto Project
-      #   run: quarto render index.qmd
-
-      - name: Publish
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-          path: ./index.qmd
+      - name: Render Quarto Project
+        run: |
+          quarto render index.qmd
+          mkdir _site
+          mv index.html _site
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           QUARTO_PYTHON: ./pyenv/bin/python
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: _site
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
