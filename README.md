@@ -7,5 +7,5 @@
 
 The goal of this repo is to document a (potentially multi-lingual) analysis
 with [Quarto](https://quarto.org/) that is deployed to 
-[GitHub Pages] (https://dmolitor.com/housing-prices) via GitHub Actions and 
+[GitHub Pages](https://dmolitor.com/housing-prices) via GitHub Actions and 
 Docker.
