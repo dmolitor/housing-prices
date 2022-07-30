@@ -9,7 +9,9 @@ RUN apt-get -y update \
     && apt install -y python3.10-venv \
     && curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb \
     && gdebi --non-interactive quarto-linux-amd64.deb \
-    && apt-get install -y git
+    && apt-get install -y git \
+    && apt-get update \
+    && apt-get install -y rsync
 RUN Rscript -e "install.packages('renv'); renv::install()"
 RUN python3.10 -m ensurepip \
     && python3.10 -m pip install --upgrade pip \

@@ -4,6 +4,10 @@ on:
     branches:
       - main
 
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   configure:
     runs-on: ubuntu-latest
@@ -34,10 +38,6 @@ jobs:
       - name: Create .nojekyll
         run: |
           echo "" >> _site/.nojekyll
-      
-      - name: Install rsync
-        run: |
-          apt-get update && apt-get install -y rsync
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
