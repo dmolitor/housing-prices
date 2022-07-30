@@ -1,0 +1,41 @@
+name: "Github Pages Docker"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    outputs:
+      uid_gid: ${{ steps.get-user.outputs.uid_gid }}
+    steps:
+      - id: get-user
+        run: echo "::set-output name=uid_gid::$(id -u):$(id -g)"
+  
+  publish:
+    needs: configure
+    runs-on: ubuntu-latest
+    container:
+      image: djmolitor/housing-prices:v2
+      options: --user ${{ needs.configure.outputs.uid_gid }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Render Quarto Project
+        run: |
+          quarto render index.qmd
+          mkdir _site
+          mv index.html _site
+        env:
+          QUARTO_PYTHON: /usr/bin/python3.10
+      
+      - name: Install rsync
+        run: |
+          sudo apt-get update && sudo apt-get install -y rsync
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: _site
