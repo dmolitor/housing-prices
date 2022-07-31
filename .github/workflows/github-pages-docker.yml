@@ -32,8 +32,6 @@ jobs:
           quarto render index.qmd
           mkdir _site
           mv index.html _site
-        env:
-          QUARTO_PYTHON: /usr/bin/python3.10
       
       - name: Create .nojekyll
         run: |
