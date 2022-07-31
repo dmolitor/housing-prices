@@ -2903,8 +2903,8 @@ Standard Dev.:  2417.77</code></pre>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize score info</span></span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>metrics_summary(tree_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Mean:  71717.91
-Standard Dev.:  2552.85</code></pre>
+<pre><code>Mean:  71848.76
+Standard Dev.:  1912.97</code></pre>
 </div>
 </div>
 </section>
@@ -2925,8 +2925,8 @@ Standard Dev.:  2552.85</code></pre>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize score info</span></span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>metrics_summary(forest_reg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Mean:  51417.1
-Standard Dev.:  1652.61</code></pre>
+<pre><code>Mean:  51307.82
+Standard Dev.:  1670.66</code></pre>
 </div>
 </div>
 <p>And finally, we will tune our random forest model via grid search.</p>
@@ -2951,7 +2951,7 @@ Standard Dev.:  1652.61</code></pre>
 <span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;Mean: &quot;</span>, np.sqrt(<span class="op">-</span>mean_sc).<span class="bu">round</span>(<span class="dv">2</span>))</span>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;Parameters: &quot;</span>, param)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Mean:  51819.23
+<pre><code>Mean:  51546.77
 Parameters:  {&#39;max_features&#39;: &#39;sqrt&#39;, &#39;min_samples_leaf&#39;: 5, &#39;n_estimators&#39;: 30}</code></pre>
 </div>
 </div>
@@ -2969,7 +2969,7 @@ Parameters:  {&#39;max_features&#39;: &#39;sqrt&#39;, &#39;min_samples_leaf&#39;
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Test RMSE: &quot;</span>, np.sqrt(mean_squared_error(test_labels, final_preds)).<span class="bu">round</span>(<span class="dv">2</span>)</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test RMSE:  50674.75</code></pre>
+<pre><code>Test RMSE:  50199.17</code></pre>
 </div>
 </div>
 </section>
